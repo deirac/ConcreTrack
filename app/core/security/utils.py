@@ -1,10 +1,9 @@
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 from app.core.config import get_settings
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+import bcrypt
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
@@ -21,7 +20,20 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     return encoded_jwt
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
+    # Convert the plain text password to bytes and truncate to 72 bytes
+    encoded_password = plain_password.encode('utf-8')[:72]
+    # Convert the stored hash from string to bytes
+    stored_hash = hashed_password.encode('utf-8')
+    try:
+        return bcrypt.checkpw(encoded_password, stored_hash)
+    except ValueError:
+        return False
 
 def get_password_hash(password: str) -> str:
-    return pwd_context.hash(password)
+    # Convert the password to bytes and truncate to 72 bytes
+    encoded_password = password.encode('utf-8')[:72]
+    # Generate a salt and hash the password
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(encoded_password, salt)
+    # Return the hash as a string
+    return hashed.decode('utf-8')

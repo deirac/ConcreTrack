@@ -1,17 +1,27 @@
-from typing import Optional
-from pydantic import BaseModel, EmailStr
+from typing import Optional, Annotated
+from pydantic import BaseModel, EmailStr, StringConstraints, Field
 from app.core.enums import Role
 
 
 class UserBase(BaseModel):
     email: EmailStr
-    username: str
+    username: Annotated[str, StringConstraints(min_length=3, max_length=50)]
 
 
 class UserCreate(UserBase):
-    password: str
+    password: Annotated[str, StringConstraints(min_length=8, max_length=72)]
     # allow role on create, default to client
     role: Optional[Role] = Role.client
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "email": "user@example.com",
+                "username": "johndoe",
+                "password": "strongpass123",
+                "role": "client"
+            }
+        }
 
 
 class UserLogin(BaseModel):

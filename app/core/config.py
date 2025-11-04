@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
     # Database
-    DATABASE_URL: Optional[str] = "sqlite:///./sql_app.db"
+    DATABASE_URL: Optional[str] = "sqlite:///./data/concretrack.db"
 
     class Config:
         env_file = ".env"
