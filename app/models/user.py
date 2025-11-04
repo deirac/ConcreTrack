@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, Enum as SAEnum
+from sqlalchemy import Column, Integer, String, Boolean, Enum as SAEnum, Date, Time, Float
 from sqlalchemy.ext.declarative import declarative_base
 from app.core.enums import Role
 
@@ -16,3 +16,4 @@ class User(Base):
     is_superuser = Column(Boolean, default=False)
     # role: one of Role values (super, admin, operator, client)
     role = Column(SAEnum(Role, name="role_enum"), default=Role.client, nullable=False)
+    

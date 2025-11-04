@@ -41,3 +41,6 @@ class User(UserBase):
 class Token(BaseModel):
     access_token: str
     token_type: str
+
+
+# FormulaTeorica schemas moved to app/schemas/formulas.py

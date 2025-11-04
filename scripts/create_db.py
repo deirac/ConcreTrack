@@ -12,6 +12,8 @@ sys.path.append(str(project_root))
 
 from app.db.session import engine
 from app.models.user import Base
+# import all models so SQLAlchemy registers their tables on metadata.create_all
+from app.models.formulas import FormulaTeorica, FormulaReal
 
 def init_db():
     # Create database directory if it doesn't exist

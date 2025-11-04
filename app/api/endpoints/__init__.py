@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from app.api.endpoints.users import router as users_router
 from app.api.endpoints.auth import router as auth_router
 from app.api.endpoints.pages import router as pages_router
+from app.api.endpoints.formulas import router as formulas_router
 from app.core.config import get_settings
 
 router = APIRouter()
@@ -10,5 +11,6 @@ router = APIRouter()
 api_v1 = get_settings().API_V1_STR
 router.include_router(users_router, prefix=api_v1)
 router.include_router(auth_router, prefix=api_v1)
+router.include_router(formulas_router, prefix=api_v1)
 # include pages router without prefix (serves HTML pages)
 router.include_router(pages_router)
