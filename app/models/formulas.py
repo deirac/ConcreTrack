@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, Date, Time, Float, Index
-from app.models.user import Base
+from app.db.session import Base
 
 
 class FormulaMixin:

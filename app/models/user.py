@@ -1,8 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean, Enum as SAEnum, Date, Time, Float
-from sqlalchemy.ext.declarative import declarative_base
+from app.db.session import Base
 from app.core.enums import Role
-
-Base = declarative_base()
 
 
 class User(Base):
