@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - ConcreTrack{% endblock %}
+
+{% block content %}
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Bienvenido a ConcreTrack</h1>
+      <p class="col-md-8 fs-4">Proyecto ejemplo con FastAPI. Usa el menú para entrar o registrarte.</p>
+      <a class="btn btn-primary btn-lg" href="/register" role="button">Registrarse</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Características</h2>
+      <ul>
+        <li>Registro y login con JWT</li>
+        <li>Estructura modular</li>
+        <li>Plantillas Jinja2</li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}
